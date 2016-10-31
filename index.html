@@ -1,0 +1,38 @@
+<!doctype html>
+<html ng-app="bucketApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+    <script src="bucket.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="contentwrapper"><div class="header"><h2>Bucket List</h2></div>
+    <div ng-controller="bucketController as bucketList">
+      <span>{{bucketList.remaining()}} of {{bucketList.todos.length}} remaining</span>
+      [ <a href="" ng-click="bucketList.archive()">Slet</a> ]
+    
+    <div class="list_wrapper">
+      <ul>
+        <li ng-repeat="todo in bucketList.todos">
+          <label>
+            <input type="checkbox" checked ng-model="todo.done">
+            <span class="done-{{todo.done}}">{{todo.text}}</span>
+          </label>
+        </li>
+      </ul>
+    </div>
+
+      <form ng-submit="bucketList.addTodo()">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="sample3" ng-model="bucketList.todoText">
+          <label class="mdl-textfield__label" for="sample3">Tilføj...</label>
+        </div>
+        <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="BucketButton" type="submit">
+      </form>
+    </div>
+    </div>
+  </body>
+</html>
